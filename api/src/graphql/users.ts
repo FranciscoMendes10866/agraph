@@ -44,7 +44,7 @@ const signin = mutationField('signin', {
       if (!val) {
         return null
       }
-      const token = sign({ id: find._id }, JWT_SECRET)
+      const token = sign({ id: find._id, username: find.username }, JWT_SECRET)
       return { _id: find._id, username: find.username, email: find.email, token }
     } catch (err) {
       throw boomify(err)

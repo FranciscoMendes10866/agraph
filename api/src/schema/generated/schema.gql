@@ -3,7 +3,9 @@
 
 
 type Mutation {
+  destroypost(id: String!): Post
   newpost(content: String!, title: String!): Post
+  patchpost(content: String!, id: String!, title: String!): Post
   signin(email: String!, password: String!): SignIn
   signup(email: String!, password: String!, username: String!): SignUp
 }
@@ -12,18 +14,21 @@ type Post {
   """ID of the post."""
   _id: String
 
+  """Author ID of the post."""
+  author_id: String
+
+  """Author username of the post."""
+  author_username: String
+
   """Content of the post."""
   content: String
 
   """Title of the post."""
   title: String
-
-  """UserID of the post."""
-  user_id: String
 }
 
 type Query {
-  ok: Boolean!
+  findposts: [Post]
 }
 
 type SignIn {

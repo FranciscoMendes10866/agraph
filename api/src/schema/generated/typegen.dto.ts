@@ -29,6 +29,12 @@ export interface NexusGenScalars {
 
 export interface NexusGenObjects {
   Mutation: {};
+  Post: { // root type
+    _id?: string | null; // String
+    content?: string | null; // String
+    title?: string | null; // String
+    user_id?: string | null; // String
+  }
   Query: {};
   SignIn: { // root type
     _id?: string | null; // String
@@ -56,8 +62,15 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
   Mutation: { // field return type
+    newpost: NexusGenRootTypes['Post'] | null; // Post
     signin: NexusGenRootTypes['SignIn'] | null; // SignIn
     signup: NexusGenRootTypes['SignUp'] | null; // SignUp
+  }
+  Post: { // field return type
+    _id: string | null; // String
+    content: string | null; // String
+    title: string | null; // String
+    user_id: string | null; // String
   }
   Query: { // field return type
     ok: boolean; // Boolean!
@@ -78,8 +91,15 @@ export interface NexusGenFieldTypes {
 
 export interface NexusGenFieldTypeNames {
   Mutation: { // field return type name
+    newpost: 'Post'
     signin: 'SignIn'
     signup: 'SignUp'
+  }
+  Post: { // field return type name
+    _id: 'String'
+    content: 'String'
+    title: 'String'
+    user_id: 'String'
   }
   Query: { // field return type name
     ok: 'Boolean'
@@ -100,6 +120,10 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Mutation: {
+    newpost: { // args
+      content: string; // String!
+      title: string; // String!
+    }
     signin: { // args
       email: string; // String!
       password: string; // String!

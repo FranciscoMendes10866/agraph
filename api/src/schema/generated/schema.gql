@@ -3,8 +3,23 @@
 
 
 type Mutation {
+  newpost(content: String!, title: String!): Post
   signin(email: String!, password: String!): SignIn
   signup(email: String!, password: String!, username: String!): SignUp
+}
+
+type Post {
+  """ID of the post."""
+  _id: String
+
+  """Content of the post."""
+  content: String
+
+  """Title of the post."""
+  title: String
+
+  """UserID of the post."""
+  user_id: String
 }
 
 type Query {

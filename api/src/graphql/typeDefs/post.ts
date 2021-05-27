@@ -1,0 +1,11 @@
+import { objectType } from '@nexus/schema'
+
+export const Post = objectType({
+  name: 'Post',
+  definition (t) {
+    t.string('_id', { description: 'ID of the post.' })
+    t.string('title', { description: 'Title of the post.' })
+    t.string('content', { description: 'Content of the post.' })
+    t.string('user_id', { description: 'UserID of the post.' })
+  }
+})

@@ -5,7 +5,7 @@ import { verify } from 'jsonwebtoken'
 import { TokenDTO } from '@utils/token.dto'
 const { JWT_SECRET } = process.env
 
-export default (request: FastifyRequest): null | string => {
+export default (request: FastifyRequest): null | TokenDTO => {
   const { authorization } = request.headers
   if (!authorization) {
     return null
@@ -13,8 +13,8 @@ export default (request: FastifyRequest): null | string => {
   const token = authorization.replace('Bearer', '').trim()
   try {
     const decoded = verify(token, JWT_SECRET)
-    const { id } = decoded as TokenDTO
-    return id
+    const { id, username } = decoded as TokenDTO
+    return { id, username }
   } catch (err) {
     throw boomify(err)
   }

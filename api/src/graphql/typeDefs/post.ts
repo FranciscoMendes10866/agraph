@@ -6,6 +6,7 @@ export const Post = objectType({
     t.string('_id', { description: 'ID of the post.' })
     t.string('title', { description: 'Title of the post.' })
     t.string('content', { description: 'Content of the post.' })
-    t.string('user_id', { description: 'UserID of the post.' })
+    t.string('author_id', { description: 'Author ID of the post.' })
+    t.string('author_username', { description: 'Author username of the post.' })
   }
 })

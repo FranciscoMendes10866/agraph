@@ -31,9 +31,10 @@ export interface NexusGenObjects {
   Mutation: {};
   Post: { // root type
     _id?: string | null; // String
+    author_id?: string | null; // String
+    author_username?: string | null; // String
     content?: string | null; // String
     title?: string | null; // String
-    user_id?: string | null; // String
   }
   Query: {};
   SignIn: { // root type
@@ -62,18 +63,21 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
   Mutation: { // field return type
+    destroypost: NexusGenRootTypes['Post'] | null; // Post
     newpost: NexusGenRootTypes['Post'] | null; // Post
+    patchpost: NexusGenRootTypes['Post'] | null; // Post
     signin: NexusGenRootTypes['SignIn'] | null; // SignIn
     signup: NexusGenRootTypes['SignUp'] | null; // SignUp
   }
   Post: { // field return type
     _id: string | null; // String
+    author_id: string | null; // String
+    author_username: string | null; // String
     content: string | null; // String
     title: string | null; // String
-    user_id: string | null; // String
   }
   Query: { // field return type
-    ok: boolean; // Boolean!
+    findposts: Array<NexusGenRootTypes['Post'] | null> | null; // [Post]
   }
   SignIn: { // field return type
     _id: string | null; // String
@@ -91,18 +95,21 @@ export interface NexusGenFieldTypes {
 
 export interface NexusGenFieldTypeNames {
   Mutation: { // field return type name
+    destroypost: 'Post'
     newpost: 'Post'
+    patchpost: 'Post'
     signin: 'SignIn'
     signup: 'SignUp'
   }
   Post: { // field return type name
     _id: 'String'
+    author_id: 'String'
+    author_username: 'String'
     content: 'String'
     title: 'String'
-    user_id: 'String'
   }
   Query: { // field return type name
-    ok: 'Boolean'
+    findposts: 'Post'
   }
   SignIn: { // field return type name
     _id: 'String'
@@ -120,8 +127,16 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Mutation: {
+    destroypost: { // args
+      id: string; // String!
+    }
     newpost: { // args
       content: string; // String!
+      title: string; // String!
+    }
+    patchpost: { // args
+      content: string; // String!
+      id: string; // String!
       title: string; // String!
     }
     signin: { // args

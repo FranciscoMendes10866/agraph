@@ -1,0 +1,43 @@
+{
+    "compilerOptions": {
+        "module": "CommonJS",
+        "target": "ES2018",
+        "lib": [
+            "ES2018"
+        ],
+        "allowJs": true,
+        "outDir": "./build",
+        "rootDir": "./src",
+        "removeComments": true,
+        "resolveJsonModule": true,
+        "typeRoots": [
+            "./node_modules/@types"
+        ],
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "baseUrl": ".",
+        "paths": {
+            "@db/*": [
+                "./src/db/*"
+            ],
+            "@graphql/*": [
+                "./src/graphql/*"
+            ],
+            "@guards/*": [
+                "./src/guards/*"
+            ],
+            "@schema/*": [
+                "./src/schema/*"
+            ],
+            "@utils/*": [
+                "./src/utils/*"
+            ],
+        }
+    },
+    "include": [
+        "src/**/*"
+    ]
+}

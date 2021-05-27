@@ -28,8 +28,22 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  Comment: { // root type
+    _id?: string | null; // String
+    commentator_id?: string | null; // String
+    commentator_username?: string | null; // String
+    message?: string | null; // String
+    post_id?: string | null; // String
+  }
   Mutation: {};
   Post: { // root type
+    _id?: string | null; // String
+    author_id?: string | null; // String
+    author_username?: string | null; // String
+    content?: string | null; // String
+    title?: string | null; // String
+  }
+  PostComments: { // root type
     _id?: string | null; // String
     author_id?: string | null; // String
     author_username?: string | null; // String
@@ -62,9 +76,19 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  Comment: { // field return type
+    _id: string | null; // String
+    commentator_id: string | null; // String
+    commentator_username: string | null; // String
+    message: string | null; // String
+    post_id: string | null; // String
+  }
   Mutation: { // field return type
+    destroycomment: NexusGenRootTypes['Comment'] | null; // Comment
     destroypost: NexusGenRootTypes['Post'] | null; // Post
+    newcomment: NexusGenRootTypes['Comment'] | null; // Comment
     newpost: NexusGenRootTypes['Post'] | null; // Post
+    patchcomment: NexusGenRootTypes['Comment'] | null; // Comment
     patchpost: NexusGenRootTypes['Post'] | null; // Post
     signin: NexusGenRootTypes['SignIn'] | null; // SignIn
     signup: NexusGenRootTypes['SignUp'] | null; // SignUp
@@ -76,8 +100,17 @@ export interface NexusGenFieldTypes {
     content: string | null; // String
     title: string | null; // String
   }
+  PostComments: { // field return type
+    _id: string | null; // String
+    author_id: string | null; // String
+    author_username: string | null; // String
+    comments: Array<NexusGenRootTypes['Comment'] | null> | null; // [Comment]
+    content: string | null; // String
+    title: string | null; // String
+  }
   Query: { // field return type
     findposts: Array<NexusGenRootTypes['Post'] | null> | null; // [Post]
+    singlepost: NexusGenRootTypes['PostComments'] | null; // PostComments
   }
   SignIn: { // field return type
     _id: string | null; // String
@@ -94,9 +127,19 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  Comment: { // field return type name
+    _id: 'String'
+    commentator_id: 'String'
+    commentator_username: 'String'
+    message: 'String'
+    post_id: 'String'
+  }
   Mutation: { // field return type name
+    destroycomment: 'Comment'
     destroypost: 'Post'
+    newcomment: 'Comment'
     newpost: 'Post'
+    patchcomment: 'Comment'
     patchpost: 'Post'
     signin: 'SignIn'
     signup: 'SignUp'
@@ -108,8 +151,17 @@ export interface NexusGenFieldTypeNames {
     content: 'String'
     title: 'String'
   }
+  PostComments: { // field return type name
+    _id: 'String'
+    author_id: 'String'
+    author_username: 'String'
+    comments: 'Comment'
+    content: 'String'
+    title: 'String'
+  }
   Query: { // field return type name
     findposts: 'Post'
+    singlepost: 'PostComments'
   }
   SignIn: { // field return type name
     _id: 'String'
@@ -127,12 +179,23 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Mutation: {
+    destroycomment: { // args
+      id: string; // String!
+    }
     destroypost: { // args
       id: string; // String!
+    }
+    newcomment: { // args
+      message: string; // String!
+      post_id: string; // String!
     }
     newpost: { // args
       content: string; // String!
       title: string; // String!
+    }
+    patchcomment: { // args
+      id: string; // String!
+      message: string; // String!
     }
     patchpost: { // args
       content: string; // String!
@@ -147,6 +210,11 @@ export interface NexusGenArgTypes {
       email: string; // String!
       password: string; // String!
       username: string; // String!
+    }
+  }
+  Query: {
+    singlepost: { // args
+      id: string; // String!
     }
   }
 }

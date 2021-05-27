@@ -1,7 +1,7 @@
 import { mutationField, stringArg, nonNull, queryField, list } from '@nexus/schema'
 import { boomify } from '@hapi/boom'
 
-import { Posts } from '@db/index'
+import { Posts, Comments } from '@db/index'
 import { Post } from '@graphql/typeDefs/post'
 
 const newpost = mutationField('newpost', {
@@ -54,6 +54,7 @@ const destroypost = mutationField('destroypost', {
   resolve: async (root, { id }, ctx) => {
     try {
       const data = await Posts.findOneAndDelete({ _id: id })
+      await Comments.remove({ post_id: id })
       return data
     } catch (err) {
       throw boomify(err)

@@ -2,9 +2,29 @@
 ### Do not make changes to this file directly
 
 
+type Comment {
+  """ID of the comment."""
+  _id: String
+
+  """UserID of the comment."""
+  commentator_id: String
+
+  """User username of the comment."""
+  commentator_username: String
+
+  """Message of the comment."""
+  message: String
+
+  """Post of the comment."""
+  post_id: String
+}
+
 type Mutation {
+  destroycomment(id: String!): Comment
   destroypost(id: String!): Post
+  newcomment(message: String!, post_id: String!): Comment
   newpost(content: String!, title: String!): Post
+  patchcomment(id: String!, message: String!): Comment
   patchpost(content: String!, id: String!, title: String!): Post
   signin(email: String!, password: String!): SignIn
   signup(email: String!, password: String!, username: String!): SignUp
@@ -27,8 +47,27 @@ type Post {
   title: String
 }
 
+type PostComments {
+  """ID of the post."""
+  _id: String
+
+  """Author ID of the post."""
+  author_id: String
+
+  """Author username of the post."""
+  author_username: String
+  comments: [Comment]
+
+  """Content of the post."""
+  content: String
+
+  """Title of the post."""
+  title: String
+}
+
 type Query {
   findposts: [Post]
+  singlepost(id: String!): PostComments
 }
 
 type SignIn {

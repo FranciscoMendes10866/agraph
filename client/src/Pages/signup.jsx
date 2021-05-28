@@ -1,8 +1,12 @@
 import { useState } from 'react'
 import { Card, CardBody, CardTitle, CardSubtitle, Button, Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
+import { useAtom } from 'jotai'
+
+import { usernameAtomPersisted } from '../store/usernameAtom'
 
 const SignUp = () => {
-    const [form, setForm] = useState({
+        const [, setUsername] = useAtom(usernameAtomPersisted)
+        const [form, setForm] = useState({
         username: '',
         email: '',
         password: ''
@@ -14,7 +18,7 @@ const SignUp = () => {
     }
     const handleOnRegister = e => {
         e.preventDefault()
-        console.log(form)
+        setUsername(form.username)
     }
     return (
         <Container>

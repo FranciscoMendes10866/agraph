@@ -23,9 +23,9 @@ type Mutation {
   destroycomment(id: String!): Comment
   destroypost(id: String!): Post
   newcomment(message: String!, post_id: String!): Comment
-  newpost(content: String!, image: String!, title: String!): Post
+  newpost(categories: String!, content: String!, description: String!, image: String!, title: String!): Post
   patchcomment(id: String!, message: String!): Comment
-  patchpost(content: String!, id: String!, image: String!, title: String!): Post
+  patchpost(categories: String!, content: String!, description: String!, id: String!, image: String!, title: String!): Post
   signin(email: String!, password: String!): SignIn
   signup(email: String!, password: String!, username: String!): SignUp
 }
@@ -40,8 +40,14 @@ type Post {
   """Author username of the post."""
   author_username: String
 
+  """Categories of the post."""
+  categories: String
+
   """Content of the post."""
   content: String
+
+  """Description of the post."""
+  description: String
 
   """Image of the post."""
   image: String

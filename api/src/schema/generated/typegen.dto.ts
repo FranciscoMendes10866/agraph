@@ -40,7 +40,9 @@ export interface NexusGenObjects {
     _id?: string | null; // String
     author_id?: string | null; // String
     author_username?: string | null; // String
+    categories?: string | null; // String
     content?: string | null; // String
+    description?: string | null; // String
     image?: string | null; // String
     title?: string | null; // String
   }
@@ -98,7 +100,9 @@ export interface NexusGenFieldTypes {
     _id: string | null; // String
     author_id: string | null; // String
     author_username: string | null; // String
+    categories: string | null; // String
     content: string | null; // String
+    description: string | null; // String
     image: string | null; // String
     title: string | null; // String
   }
@@ -150,7 +154,9 @@ export interface NexusGenFieldTypeNames {
     _id: 'String'
     author_id: 'String'
     author_username: 'String'
+    categories: 'String'
     content: 'String'
+    description: 'String'
     image: 'String'
     title: 'String'
   }
@@ -193,7 +199,9 @@ export interface NexusGenArgTypes {
       post_id: string; // String!
     }
     newpost: { // args
+      categories: string; // String!
       content: string; // String!
+      description: string; // String!
       image: string; // String!
       title: string; // String!
     }
@@ -202,7 +210,9 @@ export interface NexusGenArgTypes {
       message: string; // String!
     }
     patchpost: { // args
+      categories: string; // String!
       content: string; // String!
+      description: string; // String!
       id: string; // String!
       image: string; // String!
       title: string; // String!

@@ -29,7 +29,7 @@ const SignIn = () => {
             setUsername(data.signin.username)
             setUserId(data.signin._id)
             setToken(data.signin.token)
-            push('/dash')
+            push('/')
         }
     }
     return (

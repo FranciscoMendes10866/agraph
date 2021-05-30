@@ -1,13 +1,20 @@
 import { Container, Row, Col } from 'reactstrap';
+import { useQuery } from 'react-query'
 
 import { RecipeCard } from '../components'
+import GetRecipesHandler from '../handlers/getRecipes'
 
 const Dashboard = () => {
+    const { data, isError, isLoading } = useQuery('recipes', GetRecipesHandler)
+    if (isError) return <h1>Error while fetching all recipes.</h1>
+    if (isLoading) return <h1>Loading all recipes.</h1>
     return (
         <Container>
             <Row className="mt-5">
                 <Col xs="12" sm="6" md="4" className="px-2">
-                    <RecipeCard />
+                    { data.findposts.map(recipe => {
+                        return <RecipeCard key={recipe._id} recipe={recipe} />
+                    }) }
                 </Col>
             </Row>
         </Container>

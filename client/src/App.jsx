@@ -2,7 +2,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Provider } from 'jotai'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
-import { SignUp, SignIn, Dashboard } from './pages'
+import { SignUp, SignIn, Dashboard, Recipe } from './pages'
+import { NavBar } from './components'
 
 const App = () => {
   const queryClient = new QueryClient()
@@ -10,10 +11,12 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <Provider>
         <Router>
+          <NavBar />
           <Switch>
             <Route exact path="/register" component={SignUp} />
-            <Route path="/login" component={SignIn} />
-            <Route path="/" component={Dashboard} />
+            <Route exact path="/login" component={SignIn} />
+            <Route exact path="/" component={Dashboard} />
+            <Route exact path="/recipe" component={Recipe} />
           </Switch>
         </Router>
       </Provider>

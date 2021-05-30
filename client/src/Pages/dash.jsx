@@ -11,7 +11,7 @@ const Dashboard = () => {
     return (
         <Container>
             <Row className="mt-5">
-                <Col xs="12" sm="6" md="4" className="px-2">
+                <Col xs="12" sm="6" lg="4" className="px-2">
                     { data.findposts.map(recipe => {
                         return <RecipeCard key={recipe._id} recipe={recipe} />
                     }) }

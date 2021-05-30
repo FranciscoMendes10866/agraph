@@ -34,7 +34,7 @@ const SignIn = () => {
     }
     return (
         <Container>
-            <Row className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
+            <Row className="d-flex justify-content-center align-items-center" style={{ height: 'calc(100vh - 72px)'}}>
                 <Col xs="12" sm="10" md="5" lg="5">
                     <Card>
                         <CardBody>

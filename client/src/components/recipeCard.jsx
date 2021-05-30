@@ -1,11 +1,13 @@
+import { useHistory } from 'react-router-dom'
 import {
     Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Button
 } from 'reactstrap';
 
 const RecipeCard = ({ recipe }) => {
+    const { push } = useHistory()
     return (
-        <Card color="dark" className="text-white">
+        <Card>
             <CardImg top width="100%" src="https://keeprecipes.com/sites/keeprecipes/files/9469_1496095757_0.jpg" alt="recipe picture" />
             <CardBody>
                 <CardTitle tag="h5">{recipe.title}</CardTitle>
@@ -13,8 +15,8 @@ const RecipeCard = ({ recipe }) => {
                     return <CardSubtitle key={index} tag="small" className="mb-2 text-muted">{category}&nbsp;</CardSubtitle>
                 })}
                 <CardText className="mt-4">{recipe.description}</CardText>
-                <CardText className="mt-5">By {recipe.author_username}</CardText>
-                <Button color="warning" className="mt-4">View Recipe</Button>
+                <CardText className="mt-5">By&nbsp;<b>{recipe.author_username}</b></CardText>
+                <Button color="primary" className="mt-4" onClick={() => push(`/recipe?id=${recipe._id}`)}>View Recipe</Button>
             </CardBody>
         </Card>
     );

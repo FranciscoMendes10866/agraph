@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Provider } from 'jotai'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
 
 import Layout from './layout'
 import { SignUp, SignIn, Dashboard, Recipe, CreateRecipe } from './pages'
@@ -22,6 +23,7 @@ const App = () => {
           </Switch>
         </Router>
       </Provider>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }

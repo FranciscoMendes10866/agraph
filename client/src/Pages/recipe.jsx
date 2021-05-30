@@ -10,7 +10,7 @@ import { RecipeDetails } from '../components'
 const RecipePage = ({ location }) => {
     const { id } = queryString.parse(location.search)
     const [token] = useAtom(tokenAtomPersisted)
-    const { data, isError, isLoading } = useQuery(['recipe', { recipeId: id, token }], GetRecipeHandler)
+    const { data, isError, isLoading } = useQuery([`recipe=${id}`, { recipeId: id, token }], GetRecipeHandler)
     if (isError) return <h1>Error while fetching recipe.</h1>
     if (isLoading) return <h1>Loading recipe.</h1>
     return (

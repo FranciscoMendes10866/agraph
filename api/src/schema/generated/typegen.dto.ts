@@ -41,6 +41,7 @@ export interface NexusGenObjects {
     author_id?: string | null; // String
     author_username?: string | null; // String
     content?: string | null; // String
+    image?: string | null; // String
     title?: string | null; // String
   }
   PostComments: { // root type
@@ -98,6 +99,7 @@ export interface NexusGenFieldTypes {
     author_id: string | null; // String
     author_username: string | null; // String
     content: string | null; // String
+    image: string | null; // String
     title: string | null; // String
   }
   PostComments: { // field return type
@@ -149,6 +151,7 @@ export interface NexusGenFieldTypeNames {
     author_id: 'String'
     author_username: 'String'
     content: 'String'
+    image: 'String'
     title: 'String'
   }
   PostComments: { // field return type name
@@ -191,6 +194,7 @@ export interface NexusGenArgTypes {
     }
     newpost: { // args
       content: string; // String!
+      image: string; // String!
       title: string; // String!
     }
     patchcomment: { // args
@@ -200,6 +204,7 @@ export interface NexusGenArgTypes {
     patchpost: { // args
       content: string; // String!
       id: string; // String!
+      image: string; // String!
       title: string; // String!
     }
     signin: { // args

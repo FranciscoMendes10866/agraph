@@ -8,11 +8,12 @@ const newpost = mutationField('newpost', {
   type: Post,
   args: {
     title: nonNull(stringArg()),
-    content: nonNull(stringArg())
+    content: nonNull(stringArg()),
+    image: nonNull(stringArg())
   },
-  resolve: async (root, { title, content }, { auth }) => {
+  resolve: async (root, args, { auth }) => {
     try {
-      return await Posts.insert({ title, content, author_id: auth.id, author_username: auth.username })
+      return await Posts.insert({ ...args, author_id: auth.id, author_username: auth.username })
     } catch (err) {
       throw boomify(err)
     }
@@ -35,11 +36,12 @@ const patchpost = mutationField('patchpost', {
   args: {
     id: nonNull(stringArg()),
     title: nonNull(stringArg()),
-    content: nonNull(stringArg())
+    content: nonNull(stringArg()),
+    image: nonNull(stringArg())
   },
-  resolve: async (root, { id, title, content }, ctx) => {
+  resolve: async (root, { id, title, content, image }, ctx) => {
     try {
-      return await Posts.findOneAndUpdate({ _id: id }, { $set: { title, content } })
+      return await Posts.findOneAndUpdate({ _id: id }, { $set: { title, content, image } })
     } catch (err) {
       throw boomify(err)
     }

@@ -1,8 +1,15 @@
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Col } from 'reactstrap';
 import { useQuery } from 'react-query'
+import Masonry from 'react-masonry-css'
 
 import { RecipeCard } from '../components'
 import GetRecipesHandler from '../handlers/getRecipes'
+
+const breakpoints = {
+    default: 3,
+    1100: 2,
+    700: 1
+}
 
 const Dashboard = () => {
     const { data, isError, isLoading } = useQuery('recipes', GetRecipesHandler)
@@ -10,13 +17,19 @@ const Dashboard = () => {
     if (isLoading) return <h1>Loading all recipes.</h1>
     return (
         <Container>
-            <Row className="mt-4">
-                <Col xs="12" sm="6" lg="4" className="px-2">
-                    { data.findposts.map(recipe => {
-                        return <RecipeCard key={recipe._id} recipe={recipe} />
-                    }) }
-                </Col>
-            </Row>
+            <Masonry
+              breakpointCols={breakpoints}
+              className="my-masonry-grid mt-5"
+              columnClassName="my-masonry-grid_column"
+            >
+                {data.findposts.map(recipe => {
+                    return (
+                        <div key={recipe._id}>
+                            <RecipeCard recipe={recipe} />
+                        </div>
+                    )
+                })}
+            </Masonry>
         </Container>
     );
 }

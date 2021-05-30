@@ -15,7 +15,7 @@ import { usernameAtomPersisted } from '../store/usernameAtom'
 import { tokenAtomPersisted } from '../store/tokenAtom'
 import { userIdAtomPersisted } from '../store/userIdAtom'
 
-const NavigationBar = () => {
+const NavigationBar = ({ pathName }) => {
     const [username, setUsername] = useAtom(usernameAtomPersisted)
     const [, setToken] = useAtom(tokenAtomPersisted)
     const [, setUserId] = useAtom(userIdAtomPersisted)
@@ -45,7 +45,12 @@ const NavigationBar = () => {
                         </>
                     ) : (
                         <NavItem>
-                            <Button color="primary" className="mx-2" onClick={handleLogOut}>Log out</Button>
+                            {pathName === '/create-recipe' ? (
+                                <Button color="warning" className="mx-2" onClick={() => push('/')}>Cancel</Button>
+                            ): (
+                                <Button color="primary" className="mx-2" onClick={() => push('/create-recipe')}>Create post</Button>
+                            )}
+                            <Button color="warning" className="mx-2" onClick={handleLogOut}>Log out</Button>
                         </NavItem>
                     )}
                 </Nav>

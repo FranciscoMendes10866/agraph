@@ -14,7 +14,7 @@ const RecipePage = ({ location }) => {
     if (isError) return <h1>Error while fetching recipe.</h1>
     if (isLoading) return <h1>Loading recipe.</h1>
     return (
-        <Container className="d-flex justify-content-center align-items-center" style={{ height: 'calc(100vh - 72px)'}}>
+        <Container className="d-flex justify-content-center align-items-center px-5" style={{ height: 'calc(100vh - 72px)'}}>
             <RecipeDetails recipe={data.singlepost} />
         </Container>
     );

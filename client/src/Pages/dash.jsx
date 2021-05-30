@@ -6,8 +6,8 @@ import { RecipeCard } from '../components'
 import GetRecipesHandler from '../handlers/getRecipes'
 
 const breakpoints = {
-    default: 3,
-    1100: 2,
+    default: 4,
+    1100: 3,
     700: 1
 }
 

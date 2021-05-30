@@ -1,11 +1,14 @@
 import 'dotenv/config'
 import Fastify, { FastifyRequest, FastifyReply } from 'fastify'
+import cors from 'fastify-cors'
 import mercurius from 'mercurius'
 
 import schema from '@schema/index'
 import authorization from '@guards/authorization'
 
 const app = Fastify()
+
+app.register(cors)
 
 app.register(mercurius, {
   schema,

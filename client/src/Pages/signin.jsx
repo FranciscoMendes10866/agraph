@@ -1,7 +1,18 @@
 import { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { Card, CardBody, CardTitle, CardSubtitle, Button, Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
+import { useAtom } from 'jotai'
+
+import { usernameAtomPersisted } from '../store/usernameAtom'
+import { userIdAtomPersisted } from '../store/userIdAtom'
+import { tokenAtomPersisted } from '../store/tokenAtom'
+import SignInHandler from '../handlers/signin'
 
 const SignIn = () => {
+    const { push } = useHistory()
+    const [, setUsername] = useAtom(usernameAtomPersisted)
+    const [, setUserId] = useAtom(userIdAtomPersisted)
+    const [, setToken] = useAtom(tokenAtomPersisted)
     const [form, setForm] = useState({
         email: '',
         password: ''
@@ -11,9 +22,15 @@ const SignIn = () => {
         const { name, value } = e.target
         setForm({ ...form, [name]: value })
     }
-    const handleOnLogin = e => {
+    const handleOnLogin = async e => {
         e.preventDefault()
-        console.log(form)
+        const data = await SignInHandler(form)
+        if (data.signin !== null) {
+            setUsername(data.signin.username)
+            setUserId(data.signin._id)
+            setToken(data.signin.token)
+            push('/dash')
+        }
     }
     return (
         <Container>

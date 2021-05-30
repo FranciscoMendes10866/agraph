@@ -1,11 +1,11 @@
 import { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { Card, CardBody, CardTitle, CardSubtitle, Button, Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
-import { useAtom } from 'jotai'
 
-import { usernameAtomPersisted } from '../store/usernameAtom'
+import SignUpHandler from '../handlers/signup'
 
 const SignUp = () => {
-        const [, setUsername] = useAtom(usernameAtomPersisted)
+    const { push } = useHistory()
         const [form, setForm] = useState({
         username: '',
         email: '',
@@ -16,9 +16,12 @@ const SignUp = () => {
         const { name, value } = e.target
         setForm({ ...form, [name]: value })
     }
-    const handleOnRegister = e => {
+    const handleOnRegister = async e => {
         e.preventDefault()
-        setUsername(form.username)
+        const data = await SignUpHandler(form)
+        if (data.signup !== null) {
+            push('/login')
+        }
     }
     return (
         <Container>

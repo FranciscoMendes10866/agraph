@@ -1,6 +1,10 @@
-import { Row, Col, Card, CardImg, List } from 'reactstrap'
+import { Row, Col, Card, CardImg, List, Button, ButtonGroup } from 'reactstrap'
+import { useAtom } from 'jotai'
+
+import { userIdAtomPersisted } from '../store/userIdAtom'
 
 const RecipeDetails = ({ recipe }) => {
+    const [userId] = useAtom(userIdAtomPersisted)
     return (
         <Card>
             <Row>
@@ -10,7 +14,15 @@ const RecipeDetails = ({ recipe }) => {
                 <Col xs="12" md="6" className="px-2">
                     <Row className="px-5 py-5">
                         <Col xs="12">
-                            <h5><b>@{recipe.author_username}</b> {recipe.title}</h5>
+                            <div className="d-flex justify-content-between align-items-center">
+                                <h5><b>@{recipe.author_username}</b> {recipe.title}</h5>
+                                {recipe.author_id === userId && (
+                                    <ButtonGroup>
+                                        <Button color="info">Update</Button>
+                                        <Button color="danger">Delete</Button>
+                                    </ButtonGroup>
+                                )}
+                            </div>
                             <h5 className="mt-4">
                                 <p className="text-muted">Guide:</p>
                                 {recipe.content.split('. ').map((el, index) => {
@@ -24,8 +36,14 @@ const RecipeDetails = ({ recipe }) => {
                                     {recipe.comments.length >= 1 ? (
                                         recipe.comments.map(comment => {
                                             return (
-                                                <li key={comment._id} className="mx-4">
+                                                <li key={comment._id} className="d-flex justify-content-between align-items-center mx-4 ">
                                                     <p><b>@{comment.commentator_username}</b> {comment.message}</p>
+                                                    {comment.commentator_id === userId && (
+                                                        <ButtonGroup>
+                                                            <Button color="info" size="sm">Update</Button>
+                                                            <Button color="danger" size="sm">Delete</Button>
+                                                        </ButtonGroup>
+                                                    )}
                                                 </li>
                                             )
                                         })

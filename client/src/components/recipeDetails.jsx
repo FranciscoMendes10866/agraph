@@ -1,4 +1,4 @@
-import { Row, Col, Card, CardImg, List, Button, ButtonGroup } from 'reactstrap'
+import { Row, Col, Card, CardImg, List, Button, ButtonGroup, InputGroupAddon, InputGroup, Input } from 'reactstrap'
 import { useAtom } from 'jotai'
 
 import { userIdAtomPersisted } from '../store/userIdAtom'
@@ -48,6 +48,14 @@ const RecipeDetails = ({ recipe }) => {
                                             )
                                         })
                                     ) : <p className="mt-3 mx-4 text-muted">No comments</p>}
+                                    <li className="mt-3 mx-4">
+                                        <InputGroup>
+                                            <Input type="text" name="message" placeholder="Type your comment." />
+                                            <InputGroupAddon addonType="append">
+                                                <Button color="success">Send</Button>
+                                            </InputGroupAddon>
+                                        </InputGroup>
+                                    </li>
                                 </List>
                             </Card>
                         </Col>

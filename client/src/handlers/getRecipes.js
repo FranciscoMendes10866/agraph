@@ -1,6 +1,6 @@
 import { request, gql } from 'graphql-request'
 
-export default async function getRecipes(form) {
+export default async function getRecipes() {
     const baseURL = 'http://localhost:4000/graphql'
 
     const query = gql`

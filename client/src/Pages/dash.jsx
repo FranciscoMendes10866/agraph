@@ -1,4 +1,4 @@
-import { Container, Col } from 'reactstrap';
+import { Container } from 'reactstrap';
 import { useQuery } from 'react-query'
 import Masonry from 'react-masonry-css'
 

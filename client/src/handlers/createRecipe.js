@@ -24,9 +24,5 @@ export default async function createRecipe(form, categories, token) {
         categories: stringified
     }
 
-    console.log({ form, stringified, token })
-    console.log(variables)
-
-
     return await client.request(mutation, variables)
 }

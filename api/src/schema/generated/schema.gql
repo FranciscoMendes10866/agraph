@@ -70,6 +70,12 @@ type PostComments {
   """Content of the post."""
   content: String
 
+  """Description of the post."""
+  description: String
+
+  """Image of the post."""
+  image: String
+
   """Title of the post."""
   title: String
 }

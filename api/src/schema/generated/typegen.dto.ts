@@ -51,6 +51,8 @@ export interface NexusGenObjects {
     author_id?: string | null; // String
     author_username?: string | null; // String
     content?: string | null; // String
+    description?: string | null; // String
+    image?: string | null; // String
     title?: string | null; // String
   }
   Query: {};
@@ -112,6 +114,8 @@ export interface NexusGenFieldTypes {
     author_username: string | null; // String
     comments: Array<NexusGenRootTypes['Comment'] | null> | null; // [Comment]
     content: string | null; // String
+    description: string | null; // String
+    image: string | null; // String
     title: string | null; // String
   }
   Query: { // field return type
@@ -166,6 +170,8 @@ export interface NexusGenFieldTypeNames {
     author_username: 'String'
     comments: 'Comment'
     content: 'String'
+    description: 'String'
+    image: 'String'
     title: 'String'
   }
   Query: { // field return type name
